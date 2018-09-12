@@ -5,3 +5,6 @@
  - **export_figure.m :** exports a figure to various formats
  - **imagesc_adv.m :** creates a colorplot of a matrix/vector
  - **normalizations.m :** various data normalization methods
+ 
+## scripts:
+ - **BarPlotErrorbars.m :** generates barplots with errorbars, fully customizable.
