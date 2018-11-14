@@ -1,6 +1,6 @@
 % Author: Avgoustinos Vouros 
 % Last updated 13/09/2018
-% Thanks to Marialena for the idea + initial tests!
+% Thanks to Marialena (https://bit.ly/2QMF5Qp) for the idea + initial tests!
 
 % TODO: Description, more testing, find a more fancy name
 %       Also a gui for all the configurations!

@@ -3,7 +3,7 @@ function [f,hStrings] = imagesc_adv(mymatrix, varargin)
 %box
 
 %INPUT:
-%mymatrix : input double matrix, it can also be a vector.
+%mymatrix : double matrix, it can also be a vector.
 
 %OUTPUT:
 %f        : figure handle

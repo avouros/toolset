@@ -28,7 +28,8 @@
 % - Super Quality
 
 % Example:
-%export_figure(gcf, 'C:\Documents', 'myFig1', '.jpg', 'High Quality');
+% Save the current figure to the path 'C:\Documents\' as 'myFig1.jpg':
+% export_figure(gcf, 'C:\Documents', 'myFig1', '.jpg', 'High Quality');
 
 
 % Author: Avgoustinos Vouros
