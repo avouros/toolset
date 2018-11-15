@@ -1,17 +1,20 @@
 % DESCRIPTION: Exports the current figure into different formats.
 % ARGUMENTS:
-%           -get_current_figure: figure for exporting, for current "active"
-%                                figure use gcf.
+% -get_current_figure:    figure for exporting, for current "active" figure 
+%                         use gcf.
 %
-%           -get_path: path in which the figure should be saved.
+% -get_path:              path in which the figure should be saved.
 %
-%           -get_name: name of the generated file (without extension).
+% -get_name:              name of the generated file (without extension).
 %
-%           -get_export_format: export format ('.format', no capitals)
+% -get_export_format:     see List of accepted formats.      
 %
-%           -get_export_properties: low/high/super quality (for low quality 
-%                                   use "saveas" and for the rest use
-%                                   "print" with 300 or 600 dpi).
+% -get_export_properties: see List of accepted qualities: 
+%                         low: 150dpi (save as)
+%                         medium: 200dpi
+%                         high: 300dpi
+%                         super: 600dpi
+%                         screen: screen resultion
 
 % List of accepted formats:
 % - .pdf
@@ -24,8 +27,10 @@
 
 % List of accepted qualities:
 % - Low Quality
+% - Medium Quality
 % - High Quality
 % - Super Quality
+% - Screen Quality
 
 % Example:
 % Save the current figure to the path 'C:\Documents\' as 'myFig1.jpg':
@@ -37,66 +42,85 @@
 
 function export_figure(get_current_figure, get_path, get_name, get_export_format, get_export_properties)
     
-    % file name and extension
+    % File name and extension
     file = strcat(get_name,get_export_format);
     fpath = fullfile(get_path,file);
     
-    % if .fig format is requested just save and terminate
+    % If .fig format is requested just save and terminate
     if isequal(get_export_format,'.fig')
         saveas(get_current_figure, fpath);
         return;
     end   
     
-    if isequal(get_export_properties,'Low Quality')
-        if isequal(get_export_format,'.pdf')
-            get_export_format = '.pdf';
-        elseif isequal(get_export_format,'.svg')
-            get_export_format = '.svg';
-        elseif isequal(get_export_format,'.eps')
-            %eps level 2 colored
-            get_export_format = '.epsc2';
-        elseif isequal(get_export_format,'.jpg')    
-            get_export_format = '.jpeg';
-        elseif isequal(get_export_format,'.png')    
-            get_export_format = '.png';
-        elseif isequal(get_export_format,'.tif') 
-            %compressed
-            get_export_format = '.tiff';            
-        elseif isequal(get_export_format,'.bmp')    
-            get_export_format = '.bmp';
-        end
-    elseif isequal(get_export_properties,'High Quality') || isequal(get_export_properties,'Super Quality')
-        if isequal(get_export_format,'.pdf')
-            get_export_format = '-dpdf';
-        elseif isequal(get_export_format,'.svg')
-            get_export_format = '-dsvg';
-        elseif isequal(get_export_format,'.eps')  
-            %eps level 3 colored
-            get_export_format = '-depsc';
-        elseif isequal(get_export_format,'.jpg')    
-            get_export_format = '-djpeg';
-        elseif isequal(get_export_format,'.png')    
-            get_export_format = '-dpng';
-        elseif isequal(get_export_format,'.tif')    
-            %uncompressed
-            get_export_format = '-dtiffn';            
-        elseif isequal(get_export_format,'.bmp')    
-            get_export_format = '-dbmp';
-        end       
+    % Arrange the export format
+    switch get_export_properties
+        case 'Low Quality'
+            % Not many changes here
+            switch get_export_format
+                case '.pdf'
+                    get_export_format = '.pdf';
+                case '.svg'
+                    get_export_format = '.svg';
+                case '.eps'  
+                    get_export_format = '.epsc2'; %eps level 2 colored
+                case '.jpg'
+                    get_export_format = '.jpeg';
+                case '.png'
+                    get_export_format = '.png';
+                case '.tif'
+                    get_export_format = '.tiff'; %compressed                      
+                case '.bmp'      
+                    get_export_format = '.bmp';
+                otherwise
+                    error(strcat(get_export_format,': option unavailable'));
+            end
+        otherwise
+            % Prepare for 'print'
+            switch get_export_format
+                case '.pdf'
+                    get_export_format = '-dpdf';
+                case '.svg'
+                    get_export_format = '-dsvg';
+                case '.eps'  
+                    get_export_format = '-depsc'; %eps level 3 colored
+                case '.jpg'
+                    get_export_format = '-djpeg';
+                case '.png'
+                    get_export_format = '-dpng';
+                case '.tif'
+                    get_export_format = '-dtiffn'; %compressed                      
+                case '.bmp'      
+                    get_export_format = '-dbmp';
+                otherwise
+                    error(strcat(get_export_format,': option unavailable'));
+            end            
     end
     
+    % Output file with extension
     file = strcat(get_name,get_export_format);
     fpath = fullfile(get_path,file);  
-    if isequal(get_export_properties,'Low Quality')
-        saveas(get_current_figure, fpath); 
-    elseif isequal(get_export_properties,'High Quality')
-        % use 300dpi
-        fpath = fullfile(get_path,get_name);
-        print(get_current_figure, fpath, get_export_format,'-r300');
-    elseif isequal(get_export_properties,'Super Quality')
-        % use 600dpi
-        fpath = fullfile(get_path,get_name);
-        print(get_current_figure, fpath, get_export_format,'-r600');        
-    end    
     
+    % Arrange the output
+    switch get_export_properties
+        case 'Low Quality'
+            saveas(get_current_figure, fpath); 
+        case 'Medium Quality'
+            % use 200dpi
+            fpath = fullfile(get_path,get_name);
+            print(get_current_figure, fpath, get_export_format,'-r200');            
+        case 'High Quality'
+            % use 300dpi
+            fpath = fullfile(get_path,get_name);
+            print(get_current_figure, fpath, get_export_format,'-r300');
+        case 'Super Quality'
+            % use 600dpi
+            fpath = fullfile(get_path,get_name);
+            print(get_current_figure, fpath, get_export_format,'-r600');
+        case 'Screen Quality'
+            % use screen resolution
+            fpath = fullfile(get_path,get_name);
+            print(get_current_figure, fpath, get_export_format,'-r0');            
+        otherwise
+            error(strcat(get_export_properties,': option unavailable'));
+    end   
 end
