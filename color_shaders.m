@@ -4,9 +4,9 @@ function colors = color_shaders(hue,ncolors,option)
 %Refer to http://colorizer.org/, which provides the hue (in degrees) of 
 %every color.
 
-% - hue:     Angle (in degrees) of a color
-% - ncolors: Number of colors to be generated
-% - option:  Specifies the brightness/saturation of the colors.
+% - hue:     Integer. Angle (in degrees) of a color
+% - ncolors: Integer. Number of colors to be generated
+% - option:  String. Specifies the brightness/saturation of the colors.
 %            'light' starts from the 'hue' color until it is fully white.
 %            'dark' starts from the 'hue' color until it is fully black. 
 %            'both' generates colors so that 'hue' is in the middle, white
@@ -24,6 +24,9 @@ function colors = color_shaders(hue,ncolors,option)
 
     if nargin < 3
         option = 'both';
+    end
+    if hue < 0
+        error('Hue needs to be zero or positive');
     end
 
     % Convert 'hue' from degrees to [0-1]
