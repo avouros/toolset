@@ -25,8 +25,12 @@ function colors = color_shaders(hue,ncolors,option)
     if nargin < 3
         option = 'both';
     end
-    if hue < 0
-        error('Hue needs to be zero or positive');
+    [nn,mm] = size(hue);
+    if nn~=1 || mm~=1
+        error('Hue needs to be a scalar between [0 360]');
+    end        
+    if hue < 0 || hue > 360
+        error('Hue needs to be a scalar between [0 360]');
     end
 
     % Convert 'hue' from degrees to [0-1]
