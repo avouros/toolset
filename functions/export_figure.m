@@ -36,9 +36,9 @@
 % Save the current figure to the path 'C:\Documents\' as 'myFig1.jpg':
 % export_figure(gcf, 'C:\Documents', 'myFig1', '.jpg', 'High Quality');
 
-
-% Author: Avgoustinos Vouros
-
+% Author:
+% Avgoustinos Vouros
+% avouros1@sheffield.ac.uk
 
 function export_figure(get_current_figure, get_path, get_name, get_export_format, get_export_properties)
     

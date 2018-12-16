@@ -18,8 +18,9 @@ function colors = color_shaders(hue,ncolors,option)
 %Saturation (s): Changes the brightness until white (Saturation = 0)
 %Value (v):    : Changes the brightness until black (Value = 0)
 
-%Author: Avgoustinos Vouros
-%av.vouros@gmail.com
+% Author:
+% Avgoustinos Vouros
+% avouros1@sheffield.ac.uk
 
 
     if nargin < 3

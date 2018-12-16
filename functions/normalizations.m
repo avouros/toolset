@@ -35,8 +35,9 @@ function x = normalizations(x,option,varargin)
 %        the sane as the output x.
 
 
-% Author: Avgoustinos Vouros
-% Last update: 14/12/2018
+% Author:
+% Avgoustinos Vouros
+% avouros1@sheffield.ac.uk
 
 %%
     

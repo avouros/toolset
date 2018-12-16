@@ -1,5 +1,15 @@
 function colors = color_shadersRGB(RGB,n,option)
-%COLOR_SHADERSRGB takes an RGB triplet and produces n dark/light shades of it
+%COLOR_SHADERSRGB takes an RGB triplet and produces n dark or light shades 
+%of it
+
+% RGB:    An rgb triplet e.g. [1,0,0]
+% n:      Number of shades
+% Option: 'darker' or 'lighter'
+
+% Author:
+% Avgoustinos Vouros
+% avouros1@sheffield.ac.uk
+
     
     % Default
     if nargin < 3
