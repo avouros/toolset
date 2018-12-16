@@ -3,7 +3,7 @@
 ### Figures and plotting
 
  - **customBoxplot.m :** plot groups of data in boxplots; fully customizable.
- - **imagesc_adv.m :** creates a colorplot of a matrix/vector with values on each box ([https://bit.ly/2OOPwlx](https://bit.ly/2OOPwlx)). To be updated soon...
+ - **imagesc_adv.m :** creates a colorplot of a matrix/vector with values on each box ([https://bit.ly/2OOPwlx](https://bit.ly/2OOPwlx)). *To be updated soon...*
  - **export_figure.m :** exports a figure to various formats
  
 ### Colors
